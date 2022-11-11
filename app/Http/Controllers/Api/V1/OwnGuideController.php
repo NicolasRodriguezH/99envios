@@ -71,30 +71,30 @@ class OwnGuideController extends Controller
 
                 $guide->save();
 
-               /*  $receiver = new Origin();
-                $receiver->tipo_documento = $request->Destinatario['tipoDocumento'];
-                $receiver->numero_documento = $request->Destinatario['numeroDocumento'];
-                $receiver->nombre = $request->Destinatario['nombre'];
-                $receiver->primer_apellido = $request->Destinatario['primerApellido'];
-                $receiver->segundo_apellido = $request->Destinatario['segundoApellido'];
-                $receiver->telefono = $request->Destinatario['telefono'];
-                $receiver->direccion = $request->Destinatario['direccion'];
-                $receiver->id_destinatario = $request->Destinatario['idDestinatario'];
-                $receiver->id_remitente = $request->Destinatario['idRemitente'];
-                $receiver->id_localidad = $request->Destinatario['idLocalidad'];
-                $receiver->codigo_convenio = $request->Destinatario['CodigoConvenio'];
-                $receiver->convenio_destinatario = $request->Destinatario['ConvenioDestinatario'];
-                $receiver->correo = $request->Destinatario['correo'];
-                $receiver->guide_id = $guide->id;
+               /*  $origin = new Origin();
+                $origin->tipo_documento = $request->Destinatario['tipoDocumento'];
+                $origin->numero_documento = $request->Destinatario['numeroDocumento'];
+                $origin->nombre = $request->Destinatario['nombre'];
+                $origin->primer_apellido = $request->Destinatario['primerApellido'];
+                $origin->segundo_apellido = $request->Destinatario['segundoApellido'];
+                $origin->telefono = $request->Destinatario['telefono'];
+                $origin->direccion = $request->Destinatario['direccion'];
+                $origin->id_destinatario = $request->Destinatario['idDestinatario'];
+                $origin->id_remitente = $request->Destinatario['idRemitente'];
+                $origin->id_localidad = $request->Destinatario['idLocalidad'];
+                $origin->codigo_convenio = $request->Destinatario['CodigoConvenio'];
+                $origin->convenio_destinatario = $request->Destinatario['ConvenioDestinatario'];
+                $origin->correo = $request->Destinatario['correo'];
+                $origin->guide_id = $guide->id;
                 
-                $receiver->save();
+                $origin->save();
                 
-                $rapiradicado = new Destiny();
-                $rapiradicado->numero_de_folios = $request->RapiRadicado['numerodeFolios'];
-                $rapiradicado->codigo_rapi_radicado = $request->RapiRadicado['CodigoRapiRadicado'];
-                $rapiradicado->guide_id = $guide->id;
+                $destiny = new Destiny();
+                $destiny->numero_de_folios = $request->RapiRadicado['numerodeFolios'];
+                $destiny->codigo_rapi_radicado = $request->RapiRadicado['CodigoRapiRadicado'];
+                $destiny->guide_id = $guide->id;
         
-                $rapiradicado->save(); */
+                $destiny->save(); */
         
                 if( $request ) {
                     return response()->json([
