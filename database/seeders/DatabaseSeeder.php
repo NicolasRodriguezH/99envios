@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(StatusGuideSeeder::class);
+        //$this->call(DestinyOriginSeeder::class);
+        $this->call(OriginSeeder::class);
+        $this->call(DestinySeeder::class);
     }
 }

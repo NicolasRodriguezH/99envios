@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Guide extends Model
+class Origin extends Model
 {
     protected $guarded = ['id', 'timestamps'];
-
-    /* Relacion uno a muchos (inversa) */
-    public function status() {
-        return $this->belongsTo(StatusGuide::class);
+    
+    public function destinies() {
+        return $this->hasMany(Destiny::class);
     }
 
     use HasFactory;
