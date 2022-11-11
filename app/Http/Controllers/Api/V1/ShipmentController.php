@@ -21,17 +21,23 @@ class ShipmentController extends Controller
 
                 return response()->json([
                     'data' => [
-                        'mis_envios' => $shipments->all([   
-                            'id_sucursal', 
-                            'status_id',
-                            'peso', 
+                        'mis_envios' => $shipments->all([
+                            'tipo_de_envio',
+                            'paquetes_guardados',   
+                            'contenido',
+                            'unidad',
+                            'valor_agregado',
+                            'cantidad_de_paquetes',
                             'largo', 
                             'ancho', 
-                            'alto', 
-                            'aplica_contrapago',
-                            'valor_declarado',
+                            'altura', 
+                            'peso', 
+                            'seguro',
+                            'pago_contraentrega',
+                            'recogida_de_envio',
+                            'urlguia',
+                            'status_id',
                             'created_at',
-                            'id_cliente'
                         ]),
                     ]
                 ]);
@@ -48,7 +54,7 @@ class ShipmentController extends Controller
      */
     public function show(Guide $shipment)
     {
-        try {
+        /* try {
             return response()->json([
                 'data' => [
                     'mis_envios' => [
@@ -74,7 +80,7 @@ class ShipmentController extends Controller
             ]);   
         } catch (\Throwable $th) {
             throw $th;
-        }
+        } */
 
     }
 

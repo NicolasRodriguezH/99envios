@@ -62,39 +62,44 @@ class OwnGuideController extends Controller
                 //$guide->status_id = $request->status_id;
 
                 /* Segunda opcion: seria solo llamando al modelo de status y asignando el valor id 1 que es igual a "creado", "REVISAR CUAL PODRIA USAR MEJOR"*/
-                //$status = new StatusGuide();
-                //$guide->status_id = $status->id = 1;
-
-
-                /* $guide->origin_id = $request->origin_id;
-                $guide->destiny_id = $request->destiny_id; */
+                $status = new StatusGuide();
+                $guide->status_id = $status->id = 1;
 
                 $guide->save();
 
-               /*  $origin = new Origin();
-                $origin->tipo_documento = $request->Destinatario['tipoDocumento'];
-                $origin->numero_documento = $request->Destinatario['numeroDocumento'];
-                $origin->nombre = $request->Destinatario['nombre'];
-                $origin->primer_apellido = $request->Destinatario['primerApellido'];
-                $origin->segundo_apellido = $request->Destinatario['segundoApellido'];
-                $origin->telefono = $request->Destinatario['telefono'];
-                $origin->direccion = $request->Destinatario['direccion'];
-                $origin->id_destinatario = $request->Destinatario['idDestinatario'];
-                $origin->id_remitente = $request->Destinatario['idRemitente'];
-                $origin->id_localidad = $request->Destinatario['idLocalidad'];
-                $origin->codigo_convenio = $request->Destinatario['CodigoConvenio'];
-                $origin->convenio_destinatario = $request->Destinatario['ConvenioDestinatario'];
-                $origin->correo = $request->Destinatario['correo'];
-                $origin->guide_id = $guide->id;
+                $origin = new Origin();
+                $origin->direcciones_guardadas = $request->origen['direcciones_guardadas'];
+                $origin->nombre = $request->origen['nombre'];
+                $origin->empresa = $request->origen['empresa'];
+                $origin->email = $request->origen['email'];
+                $origin->telefono = $request->origen['telefono'];
+                $origin->pais = $request->origen['pais'];
+                $origin->ciudad = $request->origen['ciudad'];
+                $origin->localidad = $request->origen['localidad'];
+                $origin->barrio = $request->origen['barrio'];
+                $origin->direccion = $request->origen['direccion'];
+                $origin->referencia = $request->origen['referencia'];
+                $origin = new Origin();
+                $origin->origin = $origin->origin = "Bogota";
                 
                 $origin->save();
                 
                 $destiny = new Destiny();
-                $destiny->numero_de_folios = $request->RapiRadicado['numerodeFolios'];
-                $destiny->codigo_rapi_radicado = $request->RapiRadicado['CodigoRapiRadicado'];
-                $destiny->guide_id = $guide->id;
+                $destiny->direcciones_guardadas = $request->destino['direcciones_guardadas'];
+                $destiny->nombre = $request->destino['nombre'];
+                $destiny->empresa = $request->destino['empresa'];
+                $destiny->email = $request->destino['email'];
+                $destiny->telefono = $request->destino['telefono'];
+                $destiny->pais = $request->destino['pais'];
+                $destiny->ciudad = $request->destino['ciudad'];
+                $destiny->localidad = $request->destino['localidad'];
+                $destiny->barrio = $request->destino['barrio'];
+                $destiny->direccion = $request->destino['direccion'];
+                $destiny->referencia = $request->destino['referencia'];
+                $destiny = new Destiny();
+                $destiny->destiny = $destiny->destiny = "Madrid/Cundinamarca";
         
-                $destiny->save(); */
+                $destiny->save();
         
                 if( $request ) {
                     return response()->json([
@@ -108,15 +113,9 @@ class OwnGuideController extends Controller
                             'ancho' => $guide->ancho,
                             'alto' => $guide->altura,
                             'valor' => $guide->valor_agregado,
-                            //'observaciones' => $guide->observaciones,
-                            //'nombre' => $receiver->nombre,
-                            //'primerApellido' => $receiver->primer_apellido,
-                            //'telefono' => $receiver->telefono,                        
-                            //'direccion' => $receiver->direccion,
-                            //'correo' => $receiver->correo,
                             'urlguide' => $guide->urlguia,
-                            //'status_id' => [$guide->status->name, $guide->status->color],
-                            //'origen y destino' => [$guide->origin->origin, $guide->destiny->destiny]
+                            'status_id' => [$guide->status->name, $guide->status->color],
+                            'origen y destino' => [$origin->origin, $destiny->destiny]
                         ]
                     ], 201);
                 }

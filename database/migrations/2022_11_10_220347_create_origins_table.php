@@ -21,11 +21,10 @@ class CreateOriginsTable extends Migration
             $table->string('email')->nullable();
             $table->string('telefono')->nullable();
             $table->string('pais')->nullable();
-            $table->string('calle')->nullable();
-            $table->string('numero')->nullable();
-            $table->string('codigo_postal')->nullable();
             $table->string('ciudad')->nullable();
-            $table->string('zona')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('barrio')->nullable();
+            $table->string('direccion')->nullable();
             $table->string('referencia')->nullable();
             $table->string('origin')->nullable();
             $table->timestamps();
