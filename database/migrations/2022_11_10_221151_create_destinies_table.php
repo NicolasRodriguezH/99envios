@@ -26,7 +26,7 @@ class CreateDestiniesTable extends Migration
             $table->string('barrio')->nullable();
             $table->string('direccion')->nullable();
             $table->string('referencia')->nullable();
-            $table->string('destiny')->nullable();
+            
             $table->unsignedBigInteger('guide_id')
             ->nullable();
             $table->foreign('guide_id')

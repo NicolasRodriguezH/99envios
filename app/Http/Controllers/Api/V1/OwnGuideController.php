@@ -13,27 +13,6 @@ use Illuminate\Http\Request;
 class OwnGuideController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        try {
-            $destiny = new Destiny();
-            $origin = new Origin();
-
-            return response()->json([
-                'origen' => $origin->all(),
-                'destinos' => $destiny->all()
-            ]);
-
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -57,17 +36,24 @@ class OwnGuideController extends Controller
                 $guide->pago_contraentrega = $request->pago_contraentrega;
                 $guide->recogida_de_envio = $request->recogida_de_envio;
                 $guide->urlguia = $request->urlguia;
+                $guide->origin = $request->origin;
+                $guide->destiny = $request->destiny;
 
-                // campo que relaciona añ usuario verificado
-                $guide->user_id = 3;
+                // Campo que relaciona al usuario verificado, ELIMINAR en caso de no uso
+                // Para ejemplo se iguala por defecto, la linea comentada hace referencia al usuario autenticado
+                $guide->user_id = 1;
                 //$guide->user_id = auth()->id();
 
-                /* Primera opcion: Se asigna el request un campo status_id, se envia valor por el request, y el front podria poner un campo status_id en hidden si lo desea */
-                //$guide->status_id = $request->status_id;
+                
+                // Asignacion de Status a guia
 
-                /* Segunda opcion: seria solo llamando al modelo de status y asignando el valor id 1 que es igual a "creado", "REVISAR CUAL PODRIA USAR MEJOR"*/
+                /* PRIMERA OPCION: seria solo llamando al modelo de status y asignando el valor id 1 que es igual a "creado", "REVISAR CUAL PODRIA USAR MEJOR"*/
                 $status = new StatusGuide();
                 $guide->status_id = $status->id = 1;
+
+
+                /* SEGUNDA OPCION: Se asigna el request un campo status_id, se envia valor por el request, y el front podria poner un campo status_id en hidden si lo desea */
+                //$guide->status_id = $request->status_id;
 
                 $guide->save();
 
@@ -83,9 +69,7 @@ class OwnGuideController extends Controller
                 $origin->barrio = $request->origen['barrio'];
                 $origin->direccion = $request->origen['direccion'];
                 $origin->referencia = $request->origen['referencia'];
-                
-                $origin = new Origin();
-                $origin->origin = $origin->origin = "Bogota";
+                $origin->guide_id = $guide->id;
                 
                 $origin->save();
                 
@@ -101,9 +85,7 @@ class OwnGuideController extends Controller
                 $destiny->barrio = $request->destino['barrio'];
                 $destiny->direccion = $request->destino['direccion'];
                 $destiny->referencia = $request->destino['referencia'];
-
-                $destiny = new Destiny();
-                $destiny->destiny = $destiny->destiny = "Madrid/Cundinamarca";
+                $destiny->guide_id = $guide->id;
         
                 $destiny->save();
         
@@ -111,6 +93,7 @@ class OwnGuideController extends Controller
                     return response()->json([
                         'data' => [
                             'res' => "guia generada satisfactoriamente",
+                            'user' => $guide->user->name,
                             'guia' => $guide->id,
                             'contrapago' => $guide->pago_contraentrega,
                             'contenido' => $guide->contenido,
@@ -121,7 +104,7 @@ class OwnGuideController extends Controller
                             'valor' => $guide->valor_agregado,
                             'urlguide' => $guide->urlguia,
                             'status_id' => [$guide->status->name, $guide->status->color],
-                            'origen y destino' => [$origin->origin, $destiny->destiny]
+                            'origen y destino' => [$guide->origin, $guide->destiny]
                         ]
                     ], 201);
                 }

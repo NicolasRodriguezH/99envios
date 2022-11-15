@@ -14,11 +14,11 @@ class Guide extends Model
         return $this->belongsTo(StatusGuide::class);
     }
 
-    public function origins() {
+    public function origin() {
         return $this->hasOne(Origin::class);
     }
 
-    public function destinies() {
+    public function destiny() {
         return $this->hasOne(Destiny::class);
     }
 

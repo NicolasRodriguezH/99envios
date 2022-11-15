@@ -29,6 +29,8 @@ class CreateGuidesTable extends Migration
             $table->string('pago_contraentrega');
             $table->string('recogida_de_envio');
             $table->string('urlguia');
+            $table->string('origin');
+            $table->string('destiny');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')

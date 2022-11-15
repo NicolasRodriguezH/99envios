@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guide;
+use App\Models\Origin;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -54,6 +55,7 @@ class ShipmentController extends Controller
      */
     public function show(Guide $shipment)
     {
+        $origin = new Origin();
         try {
             return response()->json([
                 'data' => [
@@ -70,14 +72,15 @@ class ShipmentController extends Controller
                         'envio' => [
                             $shipment->peso, 
                             $shipment->largo, 
-                            $shipment->alto, 
+                            $shipment->altura, 
                             $shipment->ancho
                         ],
                         'aplica contrapago' => $shipment->pago_contraentrega,
                         'guia valor' => $shipment->valor_agregado,
                         'usuario' => [
                             $shipment->created_at,
-                            //$shipment->origins->origin
+                            //$shipment->origin->empresa,
+                            //$origin->empresa
                         ],
                     ],
                 ]
