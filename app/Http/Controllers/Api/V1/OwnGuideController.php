@@ -58,6 +58,10 @@ class OwnGuideController extends Controller
                 $guide->recogida_de_envio = $request->recogida_de_envio;
                 $guide->urlguia = $request->urlguia;
 
+                // campo que relaciona añ usuario verificado
+                $guide->user_id = 3;
+                //$guide->user_id = auth()->id();
+
                 /* Primera opcion: Se asigna el request un campo status_id, se envia valor por el request, y el front podria poner un campo status_id en hidden si lo desea */
                 //$guide->status_id = $request->status_id;
 
@@ -79,6 +83,7 @@ class OwnGuideController extends Controller
                 $origin->barrio = $request->origen['barrio'];
                 $origin->direccion = $request->origen['direccion'];
                 $origin->referencia = $request->origen['referencia'];
+                
                 $origin = new Origin();
                 $origin->origin = $origin->origin = "Bogota";
                 
@@ -96,6 +101,7 @@ class OwnGuideController extends Controller
                 $destiny->barrio = $request->destino['barrio'];
                 $destiny->direccion = $request->destino['direccion'];
                 $destiny->referencia = $request->destino['referencia'];
+
                 $destiny = new Destiny();
                 $destiny->destiny = $destiny->destiny = "Madrid/Cundinamarca";
         

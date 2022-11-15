@@ -15,19 +15,17 @@ class CreateDestinyOriginTable extends Migration
     {
         Schema::create('destiny_origin', function (Blueprint $table) {
             $table->id();
-            
-            
             $table->unsignedBigInteger('origin_id')
             ->nullable();
             $table->foreign('origin_id')
             ->references('id')
-            ->on('guides');
+            ->on('origins');
 
             $table->unsignedBigInteger('destiny_id')
             ->nullable();
             $table->foreign('destiny_id')
             ->references('id')
-            ->on('guides');
+            ->on('destinies');
             $table->timestamps();
         });
     }

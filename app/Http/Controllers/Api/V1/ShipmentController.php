@@ -40,7 +40,7 @@ class ShipmentController extends Controller
                             'created_at',
                         ]),
                     ]
-                ]);
+                ], 200);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -54,33 +54,37 @@ class ShipmentController extends Controller
      */
     public function show(Guide $shipment)
     {
-        /* try {
+        try {
             return response()->json([
                 'data' => [
                     'mis_envios' => [
-                        'seguimiento' => $shipment->id_sucursal,
+                        'seguimiento' => $shipment->recogida_de_envio, //Campo no obligatorio
                         'estado' => $shipment->status->name,
                         'destino' => [
-                            $shipment->receiver->nombre, 
-                            $shipment->receiver->direccion
+                            /* $shipment->destiny->nombre,
+                            $shipment->destiny->ciudad,
+                            $shipment->destiny->localidad,
+                            $shipment->destiny->barrio,
+                            $shipment->destiny->direccion, */
                         ],
                         'envio' => [
                             $shipment->peso, 
                             $shipment->largo, 
                             $shipment->alto, 
-                            $shipment->ancho],
-                        'aplica contrapago' => $shipment->aplica_contrapago,
-                        'guia valor' => $shipment->valor_declarado,
+                            $shipment->ancho
+                        ],
+                        'aplica contrapago' => $shipment->pago_contraentrega,
+                        'guia valor' => $shipment->valor_agregado,
                         'usuario' => [
-                            $shipment->created_at, 
-                            $shipment->id_cliente
+                            $shipment->created_at,
+                            //$shipment->origins->origin
                         ],
                     ],
                 ]
-            ]);   
+            ], 200);   
         } catch (\Throwable $th) {
             throw $th;
-        } */
+        }
 
     }
 

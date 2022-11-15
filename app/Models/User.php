@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relation one at many
+    public function guides() {
+        return $this->hasMany(Guide::class);
+    }
 }

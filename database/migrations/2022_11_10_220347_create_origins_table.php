@@ -27,6 +27,11 @@ class CreateOriginsTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('referencia')->nullable();
             $table->string('origin')->nullable();
+            $table->unsignedBigInteger('guide_id')
+            ->nullable();
+            $table->foreign('guide_id')
+            ->references('id')
+            ->on('guides');
             $table->timestamps();
         });
     }

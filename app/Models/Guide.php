@@ -14,5 +14,18 @@ class Guide extends Model
         return $this->belongsTo(StatusGuide::class);
     }
 
+    public function origins() {
+        return $this->hasOne(Origin::class);
+    }
+
+    public function destinies() {
+        return $this->hasOne(Destiny::class);
+    }
+
+    // Relation one at many (reverse)
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     use HasFactory;
 }

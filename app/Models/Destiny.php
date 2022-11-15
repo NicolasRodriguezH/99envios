@@ -14,5 +14,9 @@ class Destiny extends Model
         return $this->belongsTo(Origin::class);
     }
 
+    public function guide() {
+        return $this->belongsTo(Guide::class);
+    }
+
     use HasFactory;
 }

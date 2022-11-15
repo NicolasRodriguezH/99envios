@@ -13,5 +13,9 @@ class Origin extends Model
         return $this->hasMany(Destiny::class);
     }
 
+    public function guide() {
+        return $this->belongsTo(Guide::class);
+    }
+
     use HasFactory;
 }
