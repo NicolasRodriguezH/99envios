@@ -24,7 +24,7 @@ class ShipmentController extends Controller
                     'data' => [
                         'mis_envios' => $shipments->all([
                             'tipo_de_envio',
-                            'paquetes_guardados',   
+                            //'paquetes_guardados',   
                             'contenido',
                             'unidad',
                             'valor_agregado',
@@ -38,6 +38,9 @@ class ShipmentController extends Controller
                             'recogida_de_envio',
                             'urlguia',
                             'status_id',
+                            'origin',
+                            'destiny',
+                            'user_id',
                             'created_at',
                         ]),
                     ]
@@ -45,50 +48,6 @@ class ShipmentController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Guide $shipment)
-    {
-        $origin = new Origin();
-        try {
-            return response()->json([
-                'data' => [
-                    'mis_envios' => [
-                        'seguimiento' => $shipment->recogida_de_envio, //Campo no obligatorio
-                        'estado' => $shipment->status->name,
-                        'destino' => [
-                            /* $shipment->destiny->nombre,
-                            $shipment->destiny->ciudad,
-                            $shipment->destiny->localidad,
-                            $shipment->destiny->barrio,
-                            $shipment->destiny->direccion, */
-                        ],
-                        'envio' => [
-                            $shipment->peso, 
-                            $shipment->largo, 
-                            $shipment->altura, 
-                            $shipment->ancho
-                        ],
-                        'aplica contrapago' => $shipment->pago_contraentrega,
-                        'guia valor' => $shipment->valor_agregado,
-                        'usuario' => [
-                            $shipment->created_at,
-                            //$shipment->origin->empresa,
-                            //$origin->empresa
-                        ],
-                    ],
-                ]
-            ], 200);   
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-
     }
 
     /**
